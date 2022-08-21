@@ -1,0 +1,5 @@
+@mixin media($screen-type: 768px) {
+  @media screen and (min-width: map-get($screen-sizes, $screen-type)) {
+    @content;
+  }
+}

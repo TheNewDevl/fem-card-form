@@ -1,0 +1,24 @@
+{
+  "name": "fm-card-form",
+  "version": "1.0.0",
+  "description": "front end mentor challenge : interactive card detail form",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "sass": "sass --watch ./sass/main.scss:./styles/style.css"
+  },
+  "keywords": [
+    "frontend",
+    "front",
+    "end",
+    "challenge",
+    "html",
+    "sass",
+    "form"
+  ],
+  "author": "Carlos",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.54.5"
+  }
+}

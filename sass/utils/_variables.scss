@@ -1,0 +1,17 @@
+$screen-sizes: (
+  mobile: 375px,
+  desktop: 1440px,
+);
+
+$font-size-regular: 18px;
+$weight-regular: 500;
+
+//colors
+
+$p-gradient: hsl(249, 99%, 64%) to hsl(278, 94%, 30%);
+$p-red: hsl(0, 100%, 66%);
+
+$n-white: hsl(0, 0%, 100%);
+$n-light-violet: hsl(270, 3%, 87%);
+$n-medium-violet: hsl(279, 6%, 55%);
+$n-dark-violet: hsl(278, 68%, 11%);
