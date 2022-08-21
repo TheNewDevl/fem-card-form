@@ -3,3 +3,7 @@
     @content;
   }
 }
+
+@mixin radius($radius: 7px) {
+  border-radius: $radius;
+}

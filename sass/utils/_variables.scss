@@ -5,6 +5,7 @@ $screen-sizes: (
 
 $font-size-regular: 18px;
 $weight-regular: 500;
+$radius: 7px;
 
 //colors
 
@@ -15,3 +16,12 @@ $n-white: hsl(0, 0%, 100%);
 $n-light-violet: hsl(270, 3%, 87%);
 $n-medium-violet: hsl(279, 6%, 55%);
 $n-dark-violet: hsl(278, 68%, 11%);
+
+//images
+
+$bg-main-mobile: "../images/bg-main-mobile.png";
+$bg-main-desktop: "../images/bg-main-desktop.png";
+$bg-card-back: "../images/bg-card-back.png";
+$bg-card-front: "../images/bg-card-front.png";
+$card-logo: "../images/card-logo.png";
+$icon-complete: "../images/icon-complete.png";

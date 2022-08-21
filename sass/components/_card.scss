@@ -1,0 +1,18 @@
+.card {
+  width: 286px;
+  height: 157px;
+  position: absolute;
+  border-radius: 6px;
+  background-size: cover;
+
+  &--back {
+    background: url($bg-card-back);
+    top: 32px;
+    right: 16px;
+  }
+  &--front {
+    background: url($bg-card-front);
+    top: 126px;
+    left: 16px;
+  }
+}

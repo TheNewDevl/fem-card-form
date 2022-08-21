@@ -1,2 +1,7 @@
-body {
+header {
+  background: url($bg-main-mobile);
+  background-size: cover;
+  height: 34.1vh;
+  max-height: 300px;
+  position: relative;
 }
