@@ -1,7 +1,32 @@
+body {
+  background: $n-white;
+  @include media(tablet) {
+    display: flex;
+  }
+}
+
 header {
   background: url($bg-main-mobile);
   background-size: cover;
   height: 34.1vh;
+  min-height: 240px;
   max-height: 300px;
   position: relative;
+  @include media(tablet) {
+    background: url($bg-main-desktop);
+    max-height: none;
+    min-height: 535px;
+    height: 100vh;
+    width: 50.5vw;
+    max-width: 485px;
+  }
+}
+
+@include media(tablet) {
+  main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

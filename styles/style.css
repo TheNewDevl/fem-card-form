@@ -39,37 +39,107 @@ a {
   color: inherit;
 }
 
+body {
+  background: hsl(0deg, 0%, 100%);
+}
+@media screen and (min-width: 1240px) {
+  body {
+    display: flex;
+  }
+}
+
 header {
   background: url("../images/bg-main-mobile.png");
   background-size: cover;
   height: 34.1vh;
+  min-height: 240px;
   max-height: 300px;
   position: relative;
 }
+@media screen and (min-width: 1240px) {
+  header {
+    background: url("../images/bg-main-desktop.png");
+    max-height: none;
+    min-height: 535px;
+    height: 100vh;
+    width: 50.5vw;
+    max-width: 485px;
+  }
+}
 
+@media screen and (min-width: 1240px) {
+  main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 .card {
-  width: 286px;
-  height: 157px;
+  min-width: 286px;
+  max-width: 445px;
+  width: 50vw;
   position: absolute;
   border-radius: 6px;
-  background-size: cover;
+}
+@media screen and (min-width: 1240px) {
+  .card {
+    transition: transform 400ms ease-in;
+  }
 }
 .card--back {
   background: url("../images/bg-card-back.png");
   top: 32px;
   right: 16px;
+  background-size: 100% 100%;
+  position: absolute;
+}
+@media screen and (min-width: 885px) {
+  .card--back {
+    top: 50%;
+    right: 50%;
+    transform: translate(96%, -49%);
+  }
+}
+@media screen and (min-width: 1240px) {
+  .card--back {
+    transform: translate(103%, 8%);
+  }
 }
 .card--front {
   background: url("../images/bg-card-front.png");
   top: 126px;
   left: 16px;
+  background-size: 100% 100%;
+}
+@media screen and (min-width: 885px) {
+  .card--front {
+    top: 50%;
+    left: 50%;
+    transform: translate(-96%, -10%);
+  }
+}
+@media screen and (min-width: 1240px) {
+  .card--front {
+    left: auto;
+    transform: translate(37%, -107%);
+  }
 }
 
 form {
-  margin-top: 65px;
+  margin: 80px auto 0 auto;
+  margin: clamp(65px, 9vw + 1em, 100px) auto 0 auto;
   padding: 26px 24px;
   display: flex;
   flex-direction: column;
+  max-width: 1000px;
+}
+@media screen and (min-width: 1240px) {
+  form {
+    transform: translate(60px, -30px);
+    max-width: 433px;
+    margin-top: 65px;
+  }
 }
 form input {
   width: 100%;
@@ -82,6 +152,13 @@ form input {
 form input::placeholder {
   color: hsl(270deg, 3%, 87%);
 }
+form input:focus {
+  outline: none;
+  border: 2px solid transparent;
+  background-image: linear-gradient(white, white), linear-gradient(90deg, hsl(249deg, 99%, 64%) 0%, hsl(278deg, 94%, 30%) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
 
 label {
   color: hsl(278deg, 68%, 11%);
@@ -90,6 +167,11 @@ label {
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 2px;
+}
+@media screen and (min-width: 1240px) {
+  label {
+    margin-bottom: 25px;
+  }
 }
 
 .group {
@@ -111,10 +193,28 @@ label {
   width: 100%;
   height: 53px;
   background: hsl(278deg, 68%, 11%);
-  color: red;
+  color: hsl(270deg, 3%, 87%);
   border: none;
-  margin-top: 8px;
+  margin-top: 7px;
+  cursor: pointer;
   border-radius: 7px;
+  transition: color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
+}
+.btn:hover {
+  background: #4e156f;
+  color: white;
+}
+@media screen and (min-width: 1240px) {
+  .btn {
+    margin-top: 15px;
+  }
+}
+
+.error {
+  font-size: 12px;
+  color: hsl(0deg, 100%, 66%);
+  text-transform: none;
 }
 
 /*# sourceMappingURL=style.css.map */
