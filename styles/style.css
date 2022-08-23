@@ -71,8 +71,9 @@ header {
   main {
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 }
 .card {
@@ -124,6 +125,65 @@ header {
     left: auto;
     transform: translate(37%, -107%);
   }
+}
+
+.cardInfos {
+  padding: 6.7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  color: hsl(0deg, 0%, 100%);
+}
+.cardInfos__logo {
+  width: 21.2%;
+}
+.cardInfos__details {
+  height: 45%;
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cardInfos__details .numbers__container {
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+  font-size: 10px;
+}
+@media screen and (min-width: 885px) {
+  .cardInfos__details .numbers__container {
+    margin-left: 5px;
+    margin-top: 8px;
+    width: 95%;
+  }
+}
+.cardInfos__details .numbers__container .single__number {
+  font-size: 15px;
+  font-size: clamp(15px, 2vw + 0.1em, 25px);
+  letter-spacing: 0px;
+}
+.cardInfos__details .name {
+  flex-grow: 1;
+  font-size: 11px;
+  font-size: clamp(11px, 1.7vw + 0.1em, 17.5px);
+  text-transform: uppercase;
+  align-self: flex-end;
+}
+.cardInfos__details .exp {
+  font-size: 12px;
+  font-size: clamp(12px, 1.7vw + 0.1em, 17.5px);
+}
+
+.card__cvc {
+  position: absolute;
+  color: hsl(0deg, 0%, 100%);
+  right: 17%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  font-size: 11px;
+  font-size: clamp(11px, 1.7vw + 0.1em, 17.5px);
 }
 
 form {

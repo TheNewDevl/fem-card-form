@@ -25,8 +25,7 @@ header {
 @include media(tablet) {
   main {
     width: 100%;
-    display: flex;
+    @include flexColumn(center);
     align-items: center;
-    justify-content: center;
   }
 }

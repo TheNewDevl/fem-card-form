@@ -45,3 +45,66 @@
     }
   }
 }
+
+// card ifos
+.cardInfos {
+  padding: 6.7%;
+  @include flexColumn;
+  width: 100%;
+  height: 100%;
+  color: $n-white;
+
+  &__logo {
+    width: 21.2%;
+  }
+
+  &__details {
+    height: 45%;
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    & .numbers__container {
+      display: flex;
+
+      justify-content: space-between;
+      width: 97%;
+      font-size: 10px;
+
+      @include media(mobile-large) {
+        margin-left: 5px;
+        margin-top: 8px;
+        width: 95%;
+      }
+
+      & .single__number {
+        font-size: 15px;
+        font-size: clamp(15px, 2vw + 0.1em, 25px);
+        letter-spacing: 0px;
+      }
+    }
+
+    & .name {
+      flex-grow: 1;
+      font-size: 11px;
+      font-size: clamp(11px, 1.7vw + 0.1em, 17.5px);
+      text-transform: uppercase;
+      align-self: flex-end;
+    }
+    & .exp {
+      font-size: 12px;
+      font-size: clamp(12px, 1.7vw + 0.1em, 17.5px);
+    }
+  }
+}
+
+.card__cvc {
+  position: absolute;
+  color: $n-white;
+  right: 17%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  font-size: 11px;
+  font-size: clamp(11px, 1.7vw + 0.1em, 17.5px);
+}

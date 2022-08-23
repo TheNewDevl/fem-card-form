@@ -8,7 +8,7 @@ const cvc = document.querySelector("#cvc");
 /**
  * Will update the height of the card depending on the width of the card while resizing the window
  */
-const updateHeight = () => {
+const updateCardHeight = () => {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
     const width = card.offsetWidth;
@@ -17,5 +17,5 @@ const updateHeight = () => {
   });
 };
 
-window.addEventListener("resize", updateHeight);
-window.addEventListener("load", updateHeight);
+window.addEventListener("resize", updateCardHeight);
+window.addEventListener("load", updateCardHeight);
