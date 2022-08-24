@@ -1,5 +1,9 @@
 const validator = new Validator();
-
+const cvcInput = document.querySelector("#cvc-input");
+const nameInput = document.querySelector("#name");
+const numbersInput = document.querySelector("#number");
+const mounthInput = document.querySelector("#month");
+const yearInput = document.querySelector("#year");
 /**
  * Will update the height of the card depending on the width of the card while resizing the window
  */
@@ -17,7 +21,6 @@ const updateCardHeight = () => {
  */
 const handleDisplayName = () => {
   const nameDisplay = document.querySelector(".name");
-  const nameInput = document.querySelector("#name");
 
   if (!validator.name(nameInput.value)) {
     nameInput.classList.add("input__error");
@@ -34,7 +37,6 @@ const handleDisplayName = () => {
 
 const handleCVC = () => {
   const cvcDisplay = document.querySelector(".card__cvc");
-  const cvcInput = document.querySelector("#cvc-input");
   if (!validator.cvc(cvcInput.value)) {
     cvcInput.classList.add("input__error");
     displayErrorMsg(cvcInput, "Can't be blank");
@@ -52,8 +54,6 @@ const handleCVC = () => {
 };
 
 const handleNumbers = (e) => {
-  const numbersInput = document.querySelector("#number");
-
   if (!validator.isCardNumer(numbersInput.value)) {
     numbersInput.classList.add("input__error");
     displayErrorMsg(numbersInput, "Wrong format, numbers only");
@@ -74,9 +74,6 @@ const handleExp = (e) => {
   const mmDisplay = document.querySelector("#mm");
   const yyDisplay = document.querySelector("#yy");
 
-  const mounthInput = document.querySelector("#month");
-  const yearInput = document.querySelector("#year");
-
   if (+mounthInput.value <= 0) {
     mmDisplay.textContent = "00";
   } else if (+mounthInput.value < 10) {
@@ -92,9 +89,9 @@ const handleExp = (e) => {
 //event listeners
 window.addEventListener("resize", updateCardHeight);
 window.addEventListener("load", updateCardHeight);
-window.addEventListener("input", (e) => {
-  handleDisplayName();
-  handleCVC();
-  handleNumbers(e);
-  handleExp(e);
-});
+
+cvcInput.addEventListener("input", handleCVC);
+nameInput.addEventListener("input", handleDisplayName);
+numbersInput.addEventListener("input", handleNumbers);
+mounthInput.addEventListener("input", handleExp);
+yearInput.addEventListener("input", handleExp);
