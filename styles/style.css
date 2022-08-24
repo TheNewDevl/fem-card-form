@@ -165,6 +165,8 @@ header {
   letter-spacing: 0px;
 }
 .cardInfos__details .name {
+  min-width: 70%;
+  max-width: 85%;
   flex-grow: 1;
   font-size: 11px;
   font-size: clamp(11px, 1.7vw + 0.1em, 17.5px);
@@ -271,10 +273,18 @@ label {
   }
 }
 
-.error {
+.input__error,
+.input__error:focus {
+  border: 2px solid hsl(0deg, 100%, 66%);
+}
+
+.text__error {
+  margin: 10px 0px 0px 3px;
   font-size: 12px;
+  letter-spacing: 0;
   color: hsl(0deg, 100%, 66%);
   text-transform: none;
+  font-weight: 400;
 }
 
 /*# sourceMappingURL=style.css.map */

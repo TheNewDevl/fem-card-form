@@ -71,7 +71,7 @@
             </div>
 
             <p class="name">JANE APPLESSED</p>
-            <p class="exp">00/00</p>
+            <p class="exp"><span id="mm">00</span>/ <span id="yy">00</span> </p>
           </div>
         </div>
       </div>
@@ -92,28 +92,26 @@
         <label for="number">
           Card Number
           <input
-            type="number"
+            type="text"
             name="number"
             id="number"
             placeholder="e.g. 1234 5678 9123 0000"
             re
           />
-          <!--           <p class="error">Wrong format, numbers only</p>
- -->
         </label>
 
         <div class="group">
           <label for="">
             Exp. Date (MM/YY)
             <div class="group--1">
-              <input type="number" name="month" id="month" placeholder="MM" />
+              <input type="number" name="month" id="month" placeholder="MM" required />
               <input type="number" name="year" id="year" placeholder="YY" />
             </div>
           </label>
 
           <label for="cvc">
             CVC
-            <input type="number" placeholder="e.g. 123" required />
+            <input id="cvc-input" type="number" placeholder="e.g. 123" required />
           </label>
         </div>
 
@@ -130,6 +128,7 @@
         >Frontend Mentor</a
       >. Coded by <a href="#">Your Name Here</a>.
     </div>
+    <script src="utils.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

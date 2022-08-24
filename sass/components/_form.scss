@@ -81,8 +81,16 @@ label {
   }
 }
 
-.error {
+.input__error,
+.input__error:focus {
+  border: 2px solid $p-red;
+}
+
+.text__error {
+  margin: 10px 0px 0px 3px;
   font-size: 12px;
+  letter-spacing: 0;
   color: $p-red;
   text-transform: none;
+  font-weight: 400;
 }

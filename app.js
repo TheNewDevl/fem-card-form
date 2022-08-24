@@ -1,9 +1,4 @@
-const form = document.querySelector("form");
-const name = document.querySelector("#name");
-const cardNumber = document.querySelector("#number");
-const month = document.querySelector("#month");
-const year = document.querySelector("#year");
-const cvc = document.querySelector("#cvc");
+const validator = new Validator();
 
 /**
  * Will update the height of the card depending on the width of the card while resizing the window
@@ -17,5 +12,89 @@ const updateCardHeight = () => {
   });
 };
 
+/**
+ * display the default value or the input value
+ */
+const handleDisplayName = () => {
+  const nameDisplay = document.querySelector(".name");
+  const nameInput = document.querySelector("#name");
+
+  if (!validator.name(nameInput.value)) {
+    nameInput.classList.add("input__error");
+    displayErrorMsg(nameInput, "Can't be blank");
+  } else {
+    nameInput.classList.remove("input__error");
+    removeDomError(nameInput);
+  }
+
+  nameDisplay.textContent = nameInput.value
+    ? nameInput.value
+    : "jane appleseed";
+};
+
+const handleCVC = () => {
+  const cvcDisplay = document.querySelector(".card__cvc");
+  const cvcInput = document.querySelector("#cvc-input");
+  if (!validator.cvc(cvcInput.value)) {
+    cvcInput.classList.add("input__error");
+    displayErrorMsg(cvcInput, "Can't be blank");
+  } else {
+    cvcInput.classList.remove("input__error");
+    removeDomError(cvcInput);
+  }
+
+  const isANumber = isNaN(parseInt(cvcInput.value));
+  if (cvcInput.value > 999 || cvcInput.value < 0 || isANumber) {
+    cvcInput.value = "";
+  }
+
+  cvcDisplay.textContent = cvcInput.value ? cvcInput.value : "000";
+};
+
+const handleNumbers = (e) => {
+  const numbersInput = document.querySelector("#number");
+
+  if (!validator.isCardNumer(numbersInput.value)) {
+    numbersInput.classList.add("input__error");
+    displayErrorMsg(numbersInput, "Wrong format, numbers only");
+  } else {
+    numbersInput.classList.remove("input__error");
+    removeDomError(numbersInput);
+  }
+
+  //let user delete white spaces
+  if (e.inputType !== "deleteContentBackward") {
+    handleInputSpaces(numbersInput);
+  }
+
+  updateDisplayNumber(numbersInput.value);
+};
+
+const handleExp = (e) => {
+  const mmDisplay = document.querySelector("#mm");
+  const yyDisplay = document.querySelector("#yy");
+
+  const mounthInput = document.querySelector("#month");
+  const yearInput = document.querySelector("#year");
+
+  if (+mounthInput.value <= 0) {
+    mmDisplay.textContent = "00";
+  } else if (+mounthInput.value < 10) {
+    mmDisplay.textContent = "0" + mounthInput.value;
+  } else {
+    mmDisplay.textContent = mounthInput.value;
+  }
+
+  if (+yearInput.value >= 22) {
+    yyDisplay.textContent = yearInput.value;
+  }
+};
+//event listeners
 window.addEventListener("resize", updateCardHeight);
 window.addEventListener("load", updateCardHeight);
+window.addEventListener("input", (e) => {
+  handleDisplayName();
+  handleCVC();
+  handleNumbers(e);
+  handleExp(e);
+});

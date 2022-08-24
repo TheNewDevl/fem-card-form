@@ -86,6 +86,8 @@
     }
 
     & .name {
+      min-width: 70%;
+      max-width: 85%;
       flex-grow: 1;
       font-size: 11px;
       font-size: clamp(11px, 1.7vw + 0.1em, 17.5px);
