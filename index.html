@@ -32,7 +32,7 @@
   <body>
     <header>
       <div id="card-back" class="card card--back">
-        <di class="card__cvc">000</div>
+        <div class="card__cvc">000</div>
       </div>
       <div id="card-front" class="card card--front">
         <div class="cardInfos">
@@ -71,7 +71,7 @@
             </div>
 
             <p class="name">JANE APPLESSED</p>
-            <p class="exp"><span id="mm">00</span>/ <span id="yy">00</span> </p>
+            <p class="exp"><span id="mm">00</span>/<span id="yy">00</span></p>
           </div>
         </div>
       </div>
@@ -87,6 +87,7 @@
             id="name"
             placeholder="e.g. Jane Appleseed"
           />
+          <p class="text__error"></p>
         </label>
 
         <label for="number">
@@ -98,20 +99,35 @@
             placeholder="e.g. 1234 5678 9123 0000"
             re
           />
+          <p class="text__error"></p>
         </label>
 
         <div class="group">
           <label for="">
             Exp. Date (MM/YY)
             <div class="group--1">
-              <input type="number" name="month" id="month" placeholder="MM" required />
+              <input
+                type="number"
+                name="month"
+                id="month"
+                placeholder="MM"
+                required
+              />
               <input type="number" name="year" id="year" placeholder="YY" />
             </div>
+            <p class="text__error"></p>
           </label>
 
           <label for="cvc">
             CVC
-            <input id="cvc-input" type="number" placeholder="e.g. 123" required />
+            <input
+              id="cvc-input"
+              name="cvc"
+              type="number"
+              placeholder="e.g. 123"
+              required
+            />
+            <p class="text__error"></p>
           </label>
         </div>
 

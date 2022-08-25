@@ -39,6 +39,20 @@ a {
   color: inherit;
 }
 
+/* body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../design/mobile-design.jpg") no-repeat;
+  opacity: 0.4;
+  //mix-blend-mode: difference;
+  @include media(mobile-large) {
+    background: url("../design/active-states.jpg") no-repeat;
+  }
+} */
 body {
   background: hsl(0deg, 0%, 100%);
 }
@@ -173,7 +187,8 @@ header {
   text-transform: uppercase;
   align-self: flex-end;
 }
-.cardInfos__details .exp {
+.cardInfos__details .exp,
+.cardInfos__details .exp span {
   font-size: 12px;
   font-size: clamp(12px, 1.7vw + 0.1em, 17.5px);
 }
@@ -276,6 +291,7 @@ label {
 .input__error,
 .input__error:focus {
   border: 2px solid hsl(0deg, 100%, 66%);
+  animation: error 300ms ease-in-out;
 }
 
 .text__error {
@@ -285,6 +301,24 @@ label {
   color: hsl(0deg, 100%, 66%);
   text-transform: none;
   font-weight: 400;
+}
+
+@keyframes error {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(30px);
+  }
+  50% {
+    transform: translateX(-20px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

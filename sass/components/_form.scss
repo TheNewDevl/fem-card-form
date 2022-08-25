@@ -84,6 +84,7 @@ label {
 .input__error,
 .input__error:focus {
   border: 2px solid $p-red;
+  animation: error 300ms ease-in-out;
 }
 
 .text__error {

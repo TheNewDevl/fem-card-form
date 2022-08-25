@@ -94,7 +94,8 @@
       text-transform: uppercase;
       align-self: flex-end;
     }
-    & .exp {
+    & .exp,
+    .exp span {
       font-size: 12px;
       font-size: clamp(12px, 1.7vw + 0.1em, 17.5px);
     }
