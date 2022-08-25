@@ -4,9 +4,9 @@ const nameInput = document.querySelector("#name");
 const numbersInput = document.querySelector("#number");
 const mounthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
-/**
- * Will update the height of the card depending on the width of the card while resizing the window
- */
+const form = document.querySelector("form");
+
+/** Will update the height of the card depending on the width */
 const updateCardHeight = () => {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
@@ -16,82 +16,70 @@ const updateCardHeight = () => {
   });
 };
 
-/**
- * display the default value or the input value
- */
-const handleDisplayName = () => {
+window.addEventListener("resize", updateCardHeight);
+window.addEventListener("load", updateCardHeight);
+
+/** display the default value or the input value */
+const handleName = () => {
   const nameDisplay = document.querySelector(".name");
-
-  if (!validator.name(nameInput.value)) {
-    nameInput.classList.add("input__error");
-    displayErrorMsg(nameInput, "Can't be blank");
-  } else {
-    nameInput.classList.remove("input__error");
-    removeDomError(nameInput);
-  }
-
   nameDisplay.textContent = nameInput.value
     ? nameInput.value
     : "jane appleseed";
-};
 
-const handleCVC = () => {
-  const cvcDisplay = document.querySelector(".card__cvc");
-  if (!validator.cvc(cvcInput.value)) {
-    cvcInput.classList.add("input__error");
-    displayErrorMsg(cvcInput, "Can't be blank");
-  } else {
-    cvcInput.classList.remove("input__error");
-    removeDomError(cvcInput);
-  }
-
-  const isANumber = isNaN(parseInt(cvcInput.value));
-  if (cvcInput.value > 999 || cvcInput.value < 0 || isANumber) {
-    cvcInput.value = "";
-  }
-
-  cvcDisplay.textContent = cvcInput.value ? cvcInput.value : "000";
+  nameInput.addEventListener("change", validateInput);
 };
 
 const handleNumbers = (e) => {
-  if (!validator.isCardNumer(numbersInput.value)) {
-    numbersInput.classList.add("input__error");
-    displayErrorMsg(numbersInput, "Wrong format, numbers only");
-  } else {
-    numbersInput.classList.remove("input__error");
-    removeDomError(numbersInput);
-  }
-
   //let user delete white spaces
   if (e.inputType !== "deleteContentBackward") {
     handleInputSpaces(numbersInput);
   }
-
   updateDisplayNumber(numbersInput.value);
+
+  numbersInput.addEventListener("change", validateInput);
+};
+
+const handleCVC = () => {
+  const cvcDisplay = document.querySelector(".card__cvc");
+  cvcDisplay.textContent = cvcInput.value ? cvcInput.value : "000";
+  cvcInput.addEventListener("change", validateInput);
 };
 
 const handleExp = (e) => {
-  const mmDisplay = document.querySelector("#mm");
-  const yyDisplay = document.querySelector("#yy");
-
-  if (+mounthInput.value <= 0) {
-    mmDisplay.textContent = "00";
-  } else if (+mounthInput.value < 10) {
-    mmDisplay.textContent = "0" + mounthInput.value;
+  const display = document.querySelector(
+    e.target.name === "month" ? "#mm" : "#yy"
+  );
+  const length = e.target.value.length;
+  if (length === 1) {
+    display.textContent = "0" + e.target.value;
   } else {
-    mmDisplay.textContent = mounthInput.value;
+    display.textContent = e.target.value ? e.target.value : "00";
   }
-
-  if (+yearInput.value >= 22) {
-    yyDisplay.textContent = yearInput.value;
-  }
+  e.target.addEventListener("change", validateInput);
 };
-//event listeners
-window.addEventListener("resize", updateCardHeight);
-window.addEventListener("load", updateCardHeight);
 
 cvcInput.addEventListener("input", handleCVC);
-nameInput.addEventListener("input", handleDisplayName);
+nameInput.addEventListener("input", handleName);
 numbersInput.addEventListener("input", handleNumbers);
 mounthInput.addEventListener("input", handleExp);
 yearInput.addEventListener("input", handleExp);
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const inputs = document.querySelectorAll("input");
+  let formValidity = true;
+
+  for (let input of inputs) {
+    if (!validateInput(null, input)) {
+      formValidity = false;
+    }
+  }
+
+  if (formValidity) {
+    console.log("le formulaire a été correctement rempli");
+  } else {
+    console.log("le formulaire n'a pas été correctement rempli");
+  }
+};
+
+form.addEventListener("submit", handleSubmit);

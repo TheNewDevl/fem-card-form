@@ -11,7 +11,7 @@ class Validator {
    * @param {boolean} submit different check when submit form
    * @returns {boolean} true if is valid
    */
-  isCardNumer(val, submit) {
+  number(val, submit) {
     const value = this.cleanSpaces(val);
     const reg = submit ? /^\d{16}$/ : /^\d+$/;
     return submit ? reg.test(value) && value.length === 16 : reg.test(value);
@@ -23,11 +23,11 @@ class Validator {
   }
 
   name(value) {
-    const reg = /^[a-zA-Z'-]{4,20}$/;
+    const reg = /^([a-zA-Z'éèàçêï\+-][\s]{0,1}){4,20}$/;
     return reg.test(this.cleanSpaces(value));
   }
 
-  mounth(value) {
+  month(value) {
     return +value >= 0 && +value <= 12;
   }
 
@@ -67,27 +67,39 @@ const handleInputSpaces = (numbersInput) => {
 
 /**
  * Will create and insert an error message
- * @param {HTMLElement} input concerned
+ * @param {HTMLInputElement} input concerned
  * @param {string} textError the custom text error
  */
-const displayErrorMsg = (input, textError) => {
-  const closestLabel = input.closest("label");
-  const isErrorDisplayed = closestLabel.querySelector(".text__error");
-
-  if (!isErrorDisplayed) {
-    const error = document.createElement("p");
-    error.className = "text__error";
-    error.textContent = textError;
-
-    closestLabel.closest("label").appendChild(error);
-  }
+const handleError = (input, textError) => {
+  input.classList.add("input__error");
+  const closestError = input.closest("label").lastElementChild;
+  closestError.textContent = textError;
 };
 
-/**
- * @param {HTMLInputElement} input the concerned input
- */
-const removeDomError = (input) => {
-  const closestLabel = input.closest("label");
-  const error = closestLabel.querySelector(".text__error");
-  closestLabel.removeChild(error);
+/** @param {HTMLInputElement} input */
+const removeError = (input) => {
+  input.classList.remove("input__error");
+
+  const closestError = input.closest("label").lastElementChild;
+  closestError.textContent = "";
+};
+
+const textErrors = {
+  name: "Can't be blank",
+  number: "Wrong format, numbers only",
+  month: "Can't be blank",
+  year: "Can't be blank",
+  cvc: "Can't be blank",
+};
+
+const validateInput = (e, inputField) => {
+  const input = inputField ? inputField : e.target;
+
+  if (!validator[input.name](input.value)) {
+    handleError(input, textErrors[input.name]);
+    return false;
+  } else {
+    removeError(input);
+    return true;
+  }
 };
