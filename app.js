@@ -76,7 +76,12 @@ const handleSubmit = (e) => {
   }
 
   if (formValidity) {
-    console.log("le formulaire a été correctement rempli");
+    const textBtn = document.querySelector("#setting");
+    const labels = document.querySelectorAll("label");
+    labels.forEach((label) => {
+      label.style.display = "none";
+      textBtn.style.display = "none";
+    });
   } else {
     console.log("le formulaire n'a pas été correctement rempli");
   }

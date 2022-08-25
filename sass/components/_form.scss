@@ -5,9 +5,10 @@ form {
   display: flex;
   flex-direction: column;
   max-width: 1000px;
+
   @include media(tablet) {
     transform: translate(60px, -30px);
-    max-width: 433px;
+    width: 433px;
     margin-top: 65px;
   }
 

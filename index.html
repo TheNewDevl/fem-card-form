@@ -79,6 +79,15 @@
 
     <main>
       <form action="">
+        <div class="complete">
+          <img
+            class="complete__img"
+            src="./images/icon-complete.svg"
+            alt="check, complete illustration"
+          />
+          <h1 class="complete__heading">Thank You!</h1>
+          <p class="complete__text">We've added your card details</p>
+        </div>
         <label for="name">
           Cardholder Name
           <input
@@ -131,7 +140,9 @@
           </label>
         </div>
 
-        <button class="btn">Confirm</button>
+        <button class="btn">
+          <span id="setting">Confirm</span> <span id="complete">Continue</span>
+        </button>
       </form>
     </main>
     <!-- Completed state start -->
