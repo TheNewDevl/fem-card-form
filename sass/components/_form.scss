@@ -41,6 +41,8 @@ label {
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 2px;
+  animation: appear 300ms ease-in-out forwards;
+
   @include media(tablet) {
     margin-bottom: 25px;
   }

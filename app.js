@@ -64,27 +64,24 @@ numbersInput.addEventListener("input", handleNumbers);
 mounthInput.addEventListener("input", handleExp);
 yearInput.addEventListener("input", handleExp);
 
-const handleSubmit = (e) => {
+const handleSubmit = (e, isSubmitting) => {
   e.preventDefault();
-  const inputs = document.querySelectorAll("input");
-  let formValidity = true;
-
-  for (let input of inputs) {
-    if (!validateInput(null, input)) {
-      formValidity = false;
+  if (isSubmitting === true) {
+    const inputs = document.querySelectorAll("input");
+    let formValidity = true;
+    for (let input of inputs) {
+      if (!validateInput(null, input)) {
+        formValidity = false;
+      }
     }
-  }
-
-  if (formValidity) {
-    const textBtn = document.querySelector("#setting");
-    const labels = document.querySelectorAll("label");
-    labels.forEach((label) => {
-      label.style.display = "none";
-      textBtn.style.display = "none";
-    });
+    if (formValidity) alternanteViews(e, true);
   } else {
-    console.log("le formulaire n'a pas été correctement rempli");
+    resetValues();
+    alternanteViews(e, false);
   }
 };
 
-form.addEventListener("submit", handleSubmit);
+form.addEventListener("submit", (e) => {
+  const dataSet = e.target.dataset.id;
+  dataSet === "form" ? handleSubmit(e, true) : handleSubmit(e, false);
+});

@@ -39,20 +39,6 @@ a {
   color: inherit;
 }
 
-/* body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../design/complete-state-mobile.jpg") no-repeat;
-  opacity: 0.4;
-  //mix-blend-mode: difference;
-  @include media(mobile-large) {
-    background: url("../design/complete-state-desktop.jpg") no-repeat;
-  }
-} */
 body {
   background: hsl(0deg, 0%, 100%);
 }
@@ -90,10 +76,6 @@ header {
     align-items: center;
   }
 }
-label {
-  display: none;
-}
-
 .card {
   min-width: 286px;
   max-width: 445px;
@@ -248,6 +230,7 @@ label {
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 2px;
+  animation: appear 300ms ease-in-out forwards;
 }
 @media screen and (min-width: 1240px) {
   label {
@@ -315,6 +298,8 @@ label {
   min-height: 190px;
   min-width: 100%;
   margin-bottom: 40px;
+  display: none;
+  animation: appear 300ms ease-in-out forwards;
 }
 .complete__heading {
   text-transform: uppercase;
@@ -324,6 +309,9 @@ label {
 }
 .complete__text {
   color: darkgrey;
+}
+.complete__btn {
+  display: none;
 }
 
 @keyframes error {
@@ -341,6 +329,16 @@ label {
   }
   100% {
     transform: translateX(0px);
+  }
+}
+@keyframes appear {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 

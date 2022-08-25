@@ -103,3 +103,27 @@ const validateInput = (e, inputField) => {
     return true;
   }
 };
+
+const resetValues = () => {
+  cvcInput.value = "";
+  mounthInput.value = "";
+  yearInput.value = "";
+  numbersInput.value = "";
+  nameInput.value = "";
+};
+
+const alternanteViews = (e, isSubmitting) => {
+  const textBtn = document.querySelector("#setting");
+  const labels = document.querySelectorAll("label");
+  const complete = document.querySelector(".complete");
+  const completeBtn = document.querySelector(".complete__btn");
+
+  labels.forEach((label) => {
+    label.style.display = isSubmitting ? "none" : "block";
+    textBtn.style.display = isSubmitting ? "none" : "initial";
+
+    e.target.dataset.id = isSubmitting ? "reset" : "form";
+  });
+  complete.style.display = isSubmitting ? "flex" : "none";
+  completeBtn.style.display = isSubmitting ? "initial" : "none";
+};

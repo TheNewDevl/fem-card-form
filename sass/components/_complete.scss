@@ -4,7 +4,8 @@
   min-height: 190px;
   min-width: 100%;
   margin-bottom: 40px;
-
+  display: none;
+  animation: appear 300ms ease-in-out forwards;
   &__heading {
     text-transform: uppercase;
     font-size: 28px;
@@ -14,5 +15,9 @@
 
   &__text {
     color: darkgrey;
+  }
+
+  &__btn {
+    display: none;
   }
 }
