@@ -110,6 +110,14 @@ const resetValues = () => {
   yearInput.value = "";
   numbersInput.value = "";
   nameInput.value = "";
+
+  document.querySelector(".name").textContent = "JANE APPLESSED";
+  document.querySelector(".card__cvc").textContent = "000";
+  document.querySelector("#mm").textContent = "00";
+  document.querySelector("#yy").textContent = "00";
+  [...document.querySelectorAll(".single__number")].forEach((i) => {
+    i.textContent = "0";
+  });
 };
 
 const alternanteViews = (e, isSubmitting) => {
