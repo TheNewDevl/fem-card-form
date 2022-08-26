@@ -85,16 +85,20 @@ const removeError = (input) => {
 };
 
 const textErrors = {
-  name: "Can't be blank",
+  name: "Must contain at least 3 letters",
   number: "Wrong format, numbers only",
-  month: "Can't be blank",
-  year: "Can't be blank",
-  cvc: "Can't be blank",
+  month: "Wrong format. Month : 1 to 12, Yeart: 22 to 27",
+  year: "Wrong format. Month : 1 to 12, Yeart: 22 to 27",
+  cvc: "Wrong format, numbers only. Min 3 chars",
 };
 
 const validateInput = (e, inputField) => {
   const input = inputField ? inputField : e.target;
 
+  if (input.value == "") {
+    handleError(input, "Can't be blank");
+    return false;
+  }
   if (!validator[input.name](input.value)) {
     handleError(input, textErrors[input.name]);
     return false;
