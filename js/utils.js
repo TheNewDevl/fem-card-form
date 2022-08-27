@@ -1,10 +1,7 @@
 class Validator {
-  constructor() {}
-
   cleanSpaces(value) {
     return value.replace(/\s+/g, "");
   }
-
   /**
    * check the string validity
    * @param {string} val the input value
@@ -17,7 +14,8 @@ class Validator {
     return submit ? reg.test(value) && value.length === 16 : reg.test(value);
   }
 
-  cvc(value) {
+  cvc(val) {
+    const value = this.cleanSpaces(val);
     const reg = /^\d{3}$/;
     return value.length === 3 && reg.test(value);
   }
@@ -27,11 +25,14 @@ class Validator {
     return reg.test(this.cleanSpaces(value));
   }
 
-  month(value) {
-    return +value >= 0 && +value <= 12;
+  month(val) {
+    const value = this.cleanSpaces(val);
+    return +value > 0 && +value <= 12;
   }
 
-  year(value) {
+  year(val) {
+    const value = this.cleanSpaces(val);
+
     return +value >= 22 && +value <= 30;
   }
 }
@@ -138,4 +139,8 @@ const alternanteViews = (e, isSubmitting) => {
   });
   complete.style.display = isSubmitting ? "flex" : "none";
   completeBtn.style.display = isSubmitting ? "initial" : "none";
+};
+
+module.exports = {
+  Validator,
 };
