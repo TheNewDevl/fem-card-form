@@ -1,13 +1,14 @@
 {
   "name": "fm-card-form",
   "version": "1.0.0",
+  "type": "module",
   "description": "front end mentor challenge : interactive card detail form",
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./sass/main.scss:./styles/style.css",
-    "test": "jest",
-    "test:watch": "jest --watch --verbose",
-    "test:cov": "jest --coverage"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watch --verbose",
+    "test:cov": "NODE_OPTIONS=--experimental-vm-modules npx jest jest --coverage"
   },
   "keywords": [
     "frontend",

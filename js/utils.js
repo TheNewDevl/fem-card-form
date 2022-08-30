@@ -1,4 +1,4 @@
-class Validator {
+export class Validator {
   cleanSpaces(value) {
     return value.replace(/\s+/g, "");
   }
@@ -38,13 +38,24 @@ class Validator {
 }
 
 /**
+ *
+ * @param {string} selector css selector
+ * @param {boolean} all : send true to return all elements ;
+ * @returns {HTMLElement}
+ */
+export const getElem = (selector, all) => {
+  return all
+    ? document.querySelectorAll(selector)
+    : document.querySelector(selector);
+};
+
+/**
  * Remove white spaces and display the input value in the card
  * @param {string} inputValue
  */
-const updateDisplayNumber = (inputValue) => {
-  const numbers = [...document.querySelectorAll(".single__number")];
-  const value = validator.cleanSpaces(inputValue);
-
+export const updateDisplayNumber = (inputValue) => {
+  const numbers = [...getElem(".single__number", true)];
+  const value = new Validator().cleanSpaces(inputValue);
   for (let i = numbers.length - 1; i >= 0; i--) {
     numbers[i].textContent = value[i] ? value[i] : "0";
   }
@@ -54,8 +65,10 @@ const updateDisplayNumber = (inputValue) => {
  * Will format the string adding a space every 4 chars
  * @param {HTMLInputElement} numbersInput
  */
-const handleInputSpaces = (numbersInput) => {
-  const cleanInputArray = validator.cleanSpaces(numbersInput.value).split("");
+export const handleInputSpaces = (numbersInput) => {
+  const cleanInputArray = new Validator()
+    .cleanSpaces(numbersInput.value)
+    .split("");
   for (let i = 4; i < 16; i += 5) {
     if (numbersInput.value.length >= i && cleanInputArray[i] !== " ") {
       const rest = cleanInputArray.slice(i, 18);
@@ -71,14 +84,14 @@ const handleInputSpaces = (numbersInput) => {
  * @param {HTMLInputElement} input concerned
  * @param {string} textError the custom text error
  */
-const handleError = (input, textError) => {
+export const handleError = (input, textError) => {
   input.classList.add("input__error");
   const closestError = input.closest("label").lastElementChild;
   closestError.textContent = textError;
 };
 
 /** @param {HTMLInputElement} input */
-const removeError = (input) => {
+export const removeError = (input) => {
   input.classList.remove("input__error");
 
   const closestError = input.closest("label").lastElementChild;
@@ -93,14 +106,14 @@ const textErrors = {
   cvc: "Wrong format, numbers only. Min 3 chars",
 };
 
-const validateInput = (e, inputField) => {
+export const validateInput = (e, inputField) => {
   const input = inputField ? inputField : e.target;
 
   if (input.value == "") {
     handleError(input, "Can't be blank");
     return false;
   }
-  if (!validator[input.name](input.value)) {
+  if (!new Validator()[input.name](input.value)) {
     handleError(input, textErrors[input.name]);
     return false;
   } else {
@@ -109,38 +122,24 @@ const validateInput = (e, inputField) => {
   }
 };
 
-const resetValues = () => {
-  cvcInput.value = "";
-  mounthInput.value = "";
-  yearInput.value = "";
-  numbersInput.value = "";
-  nameInput.value = "";
-
-  document.querySelector(".name").textContent = "JANE APPLESSED";
-  document.querySelector(".card__cvc").textContent = "000";
-  document.querySelector("#mm").textContent = "00";
-  document.querySelector("#yy").textContent = "00";
-  [...document.querySelectorAll(".single__number")].forEach((i) => {
+export const resetValues = () => {
+  getElem("input", true).forEach((i) => (i.value = ""));
+  getElem(".name").textContent = "JANE APPLESSED";
+  getElem(".card__cvc").textContent = "000";
+  getElem("#mm").textContent = "00";
+  getElem("#yy").textContent = "00";
+  [...getElem(".single__number", true)].forEach((i) => {
     i.textContent = "0";
   });
 };
 
-const alternanteViews = (e, isSubmitting) => {
-  const textBtn = document.querySelector("#setting");
-  const labels = document.querySelectorAll("label");
-  const complete = document.querySelector(".complete");
-  const completeBtn = document.querySelector(".complete__btn");
-
-  labels.forEach((label) => {
+export const alternanteViews = (e, isSubmitting) => {
+  getElem("label", true).forEach((label) => {
     label.style.display = isSubmitting ? "none" : "block";
-    textBtn.style.display = isSubmitting ? "none" : "initial";
+    getElem("#setting").style.display = isSubmitting ? "none" : "initial";
 
     e.target.dataset.id = isSubmitting ? "reset" : "form";
   });
-  complete.style.display = isSubmitting ? "flex" : "none";
-  completeBtn.style.display = isSubmitting ? "initial" : "none";
-};
-
-module.exports = {
-  Validator,
+  getElem(".complete").style.display = isSubmitting ? "flex" : "none";
+  getElem(".complete__btn").style.display = isSubmitting ? "initial" : "none";
 };
