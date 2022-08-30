@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./sass/main.scss:./styles/style.css",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watch --verbose",
     "test:cov": "NODE_OPTIONS=--experimental-vm-modules npx jest jest --coverage"
   },
