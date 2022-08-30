@@ -76,6 +76,22 @@ header {
     align-items: center;
   }
 }
+.attribution {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  position: fixed;
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4108018207) 0%, rgba(0, 0, 0, 0) 100%);
+}
+.attribution a:nth-child(1) {
+  font-size: 10px;
+}
+.attribution a:nth-child(2) {
+  font-size: 11px;
+  color: hsl(228deg, 45%, 44%);
+}
+
 .card {
   min-width: 286px;
   max-width: 445px;
